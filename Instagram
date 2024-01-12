@@ -1,0 +1,47 @@
+Sub Instagram()
+    Dim Lin As Integer
+    Lin = Cells(1, 1) ' COLOCAR O NUMERO DA LINHA, EXEMPLO 5
+    
+    ' Abrir o navegador Chrome
+    Shell "C:\Program Files\Google\Chrome\Application\chrome.exe"
+    Application.Wait Now + TimeValue("00:00:10")
+    
+    ' Loop pelas células até encontrar uma célula vazia
+    Do Until Planilha2.Cells(Lin, 2) = ""
+        ' Abrir uma nova guia no Chrome com o link do Instagram
+        Shell "C:\Program Files\Google\Chrome\Application\chrome.exe" & " " & Planilha2.Cells(Lin, 2)
+        
+        With Application
+            .Wait Now + TimeValue("00:00:10")
+            '.SendKeys "{TAB}"
+            '.SendKeys "{TAB}"
+            '.SendKeys "~"
+            .Wait Now + TimeValue("00:00:10")
+            .SendKeys "Vi que estamos conectados, mas 80% esquece de curtir a nossa página: https://www.instagram.com/gestao4i/ "
+            .SendKeys "Nos siga lá"
+            .SendKeys "iBot - Igor"
+            
+            'MENSAGEM_EM_MASSA.Cells(Lin, 3) - MENSAGEM SELECIONAR MANUALMENTE NO CAMPO
+            
+            .Wait Now + TimeValue("00:00:10")
+            .SendKeys "~"
+        End With
+        
+        Lin = Lin + 1
+        
+        ' Fechar o navegador Chrome em múltiplos de 50
+        If Lin Mod 50 = 0 Then
+            Call FecharNavegadorChrome
+        End If
+    Loop
+    
+    MsgBox "Mensagem Enviada com Sucesso!"
+End Sub
+
+Sub FecharNavegadorChrome()
+    ' Encontre e feche todas as instâncias do Chrome
+    Dim objShell As Object
+    Set objShell = CreateObject("Shell.Application")
+    objShell.Windows().Item(0).Quit
+    Set objShell = Nothing
+End Sub
