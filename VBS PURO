@@ -1,0 +1,6 @@
+    dim objExcel
+    Set objExcel = CreateObject("Excel.Application")
+    objExcel.Application.Run "'caminho_completo_da_planilha'!nome_da_macro"
+    objExcel.Visible = false
+    objExcel.DisplayAlerts = false
+    objExcel.quit
