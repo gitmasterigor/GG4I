@@ -1,0 +1,53 @@
+Public CodErroIMP      As Byte 'fonte: https://youtu.be/GuTl0VOj4xo
+Public EnderecoBD      As String
+Public SQL             As String
+Public rs              As ADODB.Recordset 'preciso habilitar a bibliteca em referencias
+Public mConn           As ADODB.Connection
+Public CodDescrErroIMP As String
+
+Public Sub SU_ConectaBD()
+On Error GoTo erro
+    EnderecoBD = ThisWorkbook.Path & "\base\NOMEDOARQUIVO.mdb" 'precisa ver se o nome do arquivo e endereço correnpondem
+    Set nConn = New ADODB.Connection
+    
+    mConn.ConnectionString = "Provider-Microsoft.Jet.OLEDB.4.0;Data Source=" & EnderecoBD _
+    & ";Jet OLEDB:Database"
+    mConn.Open
+    Set rs = New ADODB.Recordset
+    
+erro:
+MsgBox "Erro!" & vbNewLine & vbNewLine & Err.Number & " - " & Err.Description & vbNewLine _
+    & vbNewLine & "Não foi possivel connectar a base de dados", vbCritical
+    Err.Clear
+    Set mConn = Nothing
+    Exit Sub
+    End Sub
+
+Public Sub SU_DesconectaBD()
+    On Error Resume Next
+        mConn.Close
+        Set mConn = Nothing
+    On Error GoTo 0
+    End Sub
+
+Sub ImportaParaBase()
+        SU_ConectaBD
+        SQL = ""
+                SQL = "INSERT INTO 'nome_da_tabela (nome_das_colunas,coluna2," 'ver nome da tabela e nome das colunas antes de executar
+                SQL = SQL & " 'COLUNA3, COLUNA4)"
+                SQL = SQL & " VALUES ("
+                
+                SQL = SQL & "'" & Plna1.TextBox1.Value & "',"
+                SQL = SQL & "'" & Plna1.TextBox2.Value & "',"
+                SQL = SQL & "'" & Plna1.TextBox3.Value & "',"
+                SQL = SQL & "'" & Plna1.TextBox4.Value & "'"
+                SQL = SQL & ")"
+    mConn.Execute SQL
+    SU_DesconectaBD
+    Exit Sub
+    
+erro:
+    SU_DesconectaBD
+    CodDescrErroIMP = Err.Description
+    MsgBox CodDescrErroIMP
+EndSub
