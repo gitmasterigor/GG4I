@@ -1,0 +1,7 @@
+Sub GetSheets()
+Dim u As Byte
+Range("h2").Select
+For u = 1 To Sheets.Count
+Cells(u, 8) = Sheets(u).Name
+Next u
+End Sub
