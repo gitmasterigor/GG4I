@@ -1,0 +1,49 @@
+Sub LayOutNF()
+
+    Range("NOTA_FISCAL").Select
+    Selection.Copy
+    Range("A1").Select
+    ActiveSheet.Paste
+End Sub
+Sub LayOutEstoque()
+
+    Range("ESTOQUE").Select
+    Selection.Copy
+    Range("A1").Select
+    ActiveSheet.Paste
+End Sub
+Sub LayOutGANTT()
+
+    Range("GANTT").Select
+    Selection.Copy
+    Range("A1").Select
+    ActiveSheet.Paste
+End Sub
+Sub LayOutCAIXA()
+
+    Range("CAIXA").Select
+    Selection.Copy
+    Range("A1").Select
+    ActiveSheet.Paste
+End Sub
+Sub LayOutBB()
+
+    Range("BB").Select
+    Selection.Copy
+    Range("A1").Select
+    ActiveSheet.Paste
+End Sub
+Sub LayOutORIGINAL()
+
+    Range("ORIGINAL").Select
+    Selection.Copy
+    Range("A1").Select
+    ActiveSheet.Paste
+End Sub
+Sub LayOutNUBANK()
+
+    Range("NUBANK").Select
+    Selection.Copy
+    Range("A1").Select
+    ActiveSheet.Paste
+End Sub
