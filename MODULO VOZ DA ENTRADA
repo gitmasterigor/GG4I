@@ -1,0 +1,3 @@
+Sub Voz()
+LEGENDAS_E_AVISOS.Range("A9").Speak
+End Sub
