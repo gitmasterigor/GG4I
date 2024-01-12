@@ -1,0 +1,49 @@
+Option Explicit
+
+Private Declare PtrSafe Function ShellExecute _
+    Lib "Shell32.dll" Alias "ShellExecuteA" ( _
+    ByVal hwnd As Long, _
+    ByVal Operation As String, _
+    ByVal Filename As String, _
+    Optional ByVal Parameters As String, _
+    Optional ByVal Directory As String, _
+    Optional ByVal WindowStyle As Long = vbMinimizedFocus _
+    ) As Long
+Public Sub OpenUrl(link)
+    Dim lSuccess As Long
+    lSuccess = ShellExecute(0, "Open", link)
+End Sub
+    
+'Callback for linkedin onAction
+Sub acaolinkedin(control As IRibbonControl)
+OpenUrl ("https://www.linkedin.com/company/gestao4i/")
+End Sub
+'Callback for instagram onAction
+Sub acaoinstagram(control As IRibbonControl)
+OpenUrl ("https://www.instagram.com/gestao4i")
+
+End Sub
+
+'Callback for whatsapp onAction
+Sub acaowhatsapp(control As IRibbonControl)
+OpenUrl ("https://api.whatsapp.com/send?phone=13126204719")
+
+End Sub
+
+'Callback for site onAction
+Sub acaosite(control As IRibbonControl)
+OpenUrl ("https://www.gestao4i.com.br/")
+End Sub
+'Callback for youtube onAction
+Sub acaoyoutube(control As IRibbonControl)
+OpenUrl ("https://www.youtube.com/channel/UC08K5vvJzjjeyTGprg-lzwg")
+End Sub
+
+'Callback for carregar onAction
+Sub acaocarregar(control As IRibbonControl)
+Call Envia_Email_Tabela
+End Sub
+'Callback for carregar onAction
+Sub acaohome(control As IRibbonControl)
+PainelInicial.Show
+End Sub
