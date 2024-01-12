@@ -1,0 +1,10 @@
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+    On Error Resume Next
+    ActiveWorkbook.Unprotect Password = "yBGDFTaPVM4+k,fVv.gp"
+    INICIAL.Visible = xlSheetVisible
+    MensagemEmMassa.Visible = xlSheetVeryHidden
+    Planilha1.Visible = xlSheetVeryHidden
+    Senha.Visible = xlSheetVeryHidden
+    ActiveWorkbook.Protect Password:="yBGDFTaPVM4+k,fVv.gp", Structure:=True, Windows:=False
+    ActiveWindow.DisplayWorkbookTabs = False
+End Sub
