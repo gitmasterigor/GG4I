@@ -1,0 +1,13 @@
+Private Sub Workbook_Open()
+    lsDesabilitar
+    Application.Visible = False 'Oculta a planilha
+    frmLogin.Show
+    ValidadePlanilha
+    Senha.Visible = xlSheetVeryHidden
+    ActiveWindow.DisplayWorkbookTabs = False
+    'Instalacao
+    ActiveWindow.DisplayWorkbookTabs = True
+    'LEGENDAS_E_AVISOS.Range("A1").Select
+    ActiveWindow.DisplayWorkbookTabs = False
+    Voz
+    PainelInicial.Show
