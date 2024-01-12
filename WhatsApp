@@ -1,0 +1,53 @@
+Sub WhatsApp()
+    Dim Lin As Integer
+    Dim mensagem As String
+    Lin = Cells(1, 2) ' COLOCAR O NUMERO DA LINHA, EXEMPLO 5
+    mensagem Cells(2, 2)
+    ' Abrir o navegador Edge
+    Shell "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" & " https://web.whatsapp.com/"
+    Application.Wait Now + TimeValue("00:00:30")
+    
+    ' Loop pelas células até encontrar uma célula vazia
+    Do Until Cells(Lin, 2) = ""
+    
+        mensagem.Copy
+        Shell "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" & " https://web.whatsapp.com/"
+        
+        With Application
+            .Wait Now + TimeValue("00:00:05")
+            .SendKeys "{TAB}"
+            .SendKeys "{TAB}"
+            .SendKeys "{TAB}"
+            .SendKeys "{TAB}"
+            .SendKeys "{TAB}"
+            .SendKeys "{TAB}"
+            .Wait Now + TimeValue("00:00:03")
+            .SendKeys Planilha1.Cells(Lin, 2) ' Contato
+            .Wait Now + TimeValue("00:00:05")
+            .SendKeys "~"
+            .Wait Now + TimeValue("00:00:05")
+            mensagem.Paste
+            .Wait Now + TimeValue("00:00:05")
+            .SendKeys "~"
+            .Wait Now + TimeValue("00:00:05")
+
+        End With
+        
+        Lin = Lin + 1
+        
+        ' Fechar o navegador Edge em múltiplos de 50
+        If Lin Mod 50 = 0 Then
+            Call FecharNavegadorEdge
+        End If
+    Loop
+    
+    MsgBox "Mensagem Enviada com Sucesso!"
+End Sub
+
+Sub FecharNavegadorEdge()
+    ' Encontre e feche todas as instâncias do Edge
+    Dim objShell As Object
+    Set objShell = CreateObject("Shell.Application")
+    objShell.Windows().Item(0).Quit
+    Set objShell = Nothing
+End Sub
