@@ -17,5 +17,3 @@ Public Sub ValidadePlanilha() ' FONTE: https://www.aprenderexcel.com.br/2015/vba
     Exit Sub
   End If
 End Sub
-
-'MODULO VOZ DA ENTRADA
