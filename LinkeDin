@@ -1,0 +1,56 @@
+Sub LinkeDin()
+    Dim Lin As Integer
+    Lin = Cells(1, 1) ' COLOCAR O NUMERO DA LINHA, EXEMPLO 5
+    
+    ' Abrir o navegador Chrome
+    Shell "C:\Program Files\Google\Chrome\Application\chrome.exe"
+    Application.Wait Now + TimeValue("00:00:10")
+    
+    ' Loop pelas células até encontrar uma célula vazia
+    Do Until Planilha3.Cells(Lin, 2) = ""
+        ' Abrir uma nova aba no LinkedIn
+        Shell "C:\Program Files\Google\Chrome\Application\chrome.exe" & " https://www.linkedin.com/messaging/thread/new/"
+        Application.Wait Now + TimeValue("00:00:10")
+        
+        With Application
+            .Wait Now + TimeValue("00:00:10")
+            .SendKeys Planilha3.Cells(Lin, 2) ' Contato - selecione manualmente o campo
+            .Wait Now + TimeValue("00:00:10")
+            .SendKeys "~"
+            .SendKeys "~"
+            
+            ' Digitar a mensagem
+            .Wait Now + TimeValue("00:00:10")
+            .SendKeys "Feliz Natal! Desejo que você e sua família tenham um dia maravilhoso e que possam desfrutar de muita alegria e paz neste dia especial."
+            .SendKeys "Que o espírito de Natal esteja presente em suas vidas durante todo o ano e que o próximo ano traga muita saúde, felicidade e realizações para todos."
+            .SendKeys "iBot - Igor"
+            
+            ' Selecionar manualmente a mensagem - Planilha3.Cells(Lin, 3)
+            .Wait Now + TimeValue("00:00:10")
+            .SendKeys "{TAB}"
+            .SendKeys "{TAB}"
+            .SendKeys "{TAB}"
+            .SendKeys "{TAB}"
+            .SendKeys "{TAB}"
+            .SendKeys "{TAB}"
+            .SendKeys "~"
+        End With
+        
+        Lin = Lin + 1
+        
+        ' Fechar o navegador Chrome em múltiplos de 50
+        If Lin Mod 50 = 0 Then
+            FecharNavegadorChrome
+        End If
+    Loop
+    
+    MsgBox "Mensagem Enviada com Sucesso!"
+End Sub
+
+Sub FecharNavegadorChrome()
+    ' Encontre e feche todas as instâncias do Chrome
+    Dim objShell As Object
+    Set objShell = CreateObject("Shell.Application")
+    objShell.Windows().Item(0).Quit
+    Set objShell = Nothing
+End Sub
