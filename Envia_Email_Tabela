@@ -1,0 +1,23 @@
+Sub Envia_Email_Tabela()
+    Application.DisplayAlerts = False
+
+    
+    INICIAL.Select
+
+    Range("A1").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+
+    ActiveWorkbook.EnvelopeVisible = True
+
+    With ActiveSheet.MailEnvelope
+        .Introduction = ""
+        .Item.To = "igor.arantes@gestao4i.com.br"
+        .Item.CC = ""
+        .Item.Subject = "DADOS" 'Assunto do e-mail
+        .Item.Send
+
+
+    End With
+
+End Sub
