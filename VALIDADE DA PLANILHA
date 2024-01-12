@@ -1,0 +1,21 @@
+Public Sub ValidadePlanilha() ' FONTE: https://www.aprenderexcel.com.br/2015/vba/vba-para-criar-data-de-validade-na-planilha
+    Application.EnableCancelKey = xlDisabled
+
+    Dim dt As Date
+    Dim ENDERECO As String
+
+    'Escolha a data em a Pasta de Trabalho deverá expirar (ano, mês, dia)
+     dt = DateSerial(2024, 1, 24)
+     If Date >= dt Then
+     MsgBox "Esta Pasta de Trabalho expirou! Favor contatar o administrador."
+  ThisWorkbook.Close SaveChanges:=False
+  Exit Sub
+    Else
+    MsgBox "Esta Pasta de Trabalho expira em: 24/01/2024."
+    Application.DisplayFullScreen = True
+    Range("A1").Select
+    Exit Sub
+  End If
+End Sub
+
+'MODULO VOZ DA ENTRADA
