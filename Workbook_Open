@@ -11,3 +11,4 @@ Private Sub Workbook_Open()
     ActiveWindow.DisplayWorkbookTabs = False
     Voz
     PainelInicial.Show
+End Sub
