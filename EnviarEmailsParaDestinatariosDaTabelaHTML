@@ -1,0 +1,44 @@
+Public Sub EnviarEmailsParaDestinatariosDaTabelaHTML() 'FONTE: https://www.youtube.com/watch?v=WMPXfe_qKgI
+    Dim tabelaDeEmails As ListObject
+    Dim linhaDaTabela As ListRow
+    Dim EMAIL As String
+    Dim Nome As String
+    Dim Anexo1 As String
+    Dim Anexo2 As String
+    
+    Dim ObjOutlook As Outlook.Application
+    Dim objEMAIL As Outlook.MailItem
+    
+        Set ObjOutlook = getOutlook() 'ABRIR O OBJETO OUTLOOK
+        Set tabelaDeEmails = wsEmails.ListObjects("TB_EMAIL")
+ 
+            For Each linhaDaTabela In tabelaDeEmails.ListRows 'LER TABELA
+                
+                EMAIL = linhaDaTabela.Range(1, 1).Value
+                Nome = linhaDaTabela.Range(1, 2).Value
+                Anexo1 = linhaDaTabela.Range(1, 3).Value
+                Anexo2 = linhaDaTabela.Range(1, 4).Value
+            
+            Set objEMAIL = ObjOutlook.CreateItem(olMailItem) 'criando o email
+             
+            With objEMAIL
+                .SendUsingAccount = ObjOutlook.session.Accounts("mkt.gestao4i@gmail.com")
+                .SentOnBehalfOfName = "mkt.gestao4i@gmail.com"
+                .Subject = "Gestão 4i tem parceria com a nexoos para empréstimos"
+                .to = EMAIL
+                'ou so imagem ou só texto, naão consegui os 2 ainda
+                .HTMLBody = "<html><p>Entre em contato com a gestão 4i para buscar mais informações de como contratar!</p>" & _
+                    "<img src='C:\Users\igorc\OneDrive - Gestão 4i\GESTAO 4I\CLIENTES\1_PROSPECÇÃO\ART\IMAGEM\ARTE03\Igorarte.png'>"
+                'SE TIVER CAMINHO, ENTÃO ANEXAR
+                If Anexo1 <> "" Then
+                    .attachments.Add Anexo1
+                End If
+                If Anexo2 <> "" Then
+                    .attachments.Add Anexo2
+                End If
+                .Send
+            End With
+            
+            Next linhaDaTabela
+
+End Sub
