@@ -1,0 +1,10 @@
+Sub VBA_Get_ActiveWorkbook_Path()
+    
+    'Variable declaration
+    Dim sWorkbookPath As String
+    
+    sWorkbookPath = ActiveWorkbook.Path
+    
+    MsgBox "Active Workbook Path is : " & sWorkbookPath, vbInformation, "VBAF1"
+
+End Sub
